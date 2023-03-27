@@ -1,16 +1,35 @@
 import * as cssTree from 'css-tree'
 import sass from 'sass'
 
-const formatCssToArray = (cssStr: string): string[][] => {
-  const BRACE_REX = /[{}]/g
-  const css = cssStr.replace(BRACE_REX, '')
-  const lines = css.split(';')
-  return lines.map((line: string) => line.split(':'))
-}
+// * ---------------------------------------------------------------- inter
 
-export const getCssValueFromFile = async (cssFile: string) => {
+type CssProperty = string
+type CssValue = string
+export type CssProAndValue = [CssProperty, CssValue]
+
+// * ---------------------------------------------------------------- func
+
+/**
+ *
+ * @get .pc_lenovo_box {
+    margin: 0 auto;
+    display: flex;
+  }
+ * 
+ * @return ".pc_lenovo_box" => [
+    [
+      "margin",
+      "0 auto",
+    ],
+    [
+      "display",
+      "flex",
+    ]
+  ]
+ */
+export const transformToCssMapFromFile = async (cssFile: string) => {
   // Compile the SCSS to CSS
-  const res = new Map<string, string[][]>()
+  const res = new Map<string, CssProAndValue[]>()
 
   return new Promise((resolve) => {
     sass.render({
@@ -22,10 +41,6 @@ export const getCssValueFromFile = async (cssFile: string) => {
       }
       else {
         const cssStr = result?.css && Buffer.from(result.css).toString()
-
-        // const result = sass.renderSync({ file: cssFile })
-        // Parse the CSS and extract the selectors and properties
-
         const ast = cssTree.parse(cssStr || '')
         // TODO: scss/less variable // XiaoLiang
         cssTree.walk(ast, (node: any) => {
@@ -42,4 +57,13 @@ export const getCssValueFromFile = async (cssFile: string) => {
       }
     })
   })
+}
+
+// * ---------------------------------------------------------------- util
+
+const formatCssToArray = (cssStr: string): CssProAndValue[] => {
+  const BRACE_REX = /[{}]/g
+  const css = cssStr.replace(BRACE_REX, '')
+  const lines = css.split(';')
+  return lines.map((line: string) => line.split(':')) as CssProAndValue[]
 }

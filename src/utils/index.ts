@@ -1,5 +1,7 @@
 import { Tailwind_Atom_Map } from '../config/atomMap'
 
+// * ----------------------------------------------------------------
+
 const BRACE_REX = /[{}]/g
 
 export const toCamelCase = (str: string): string => {
@@ -28,7 +30,14 @@ export const getAtomByCss = (cssRules: string[][]) => {
   }).join(' ')
 }
 
-export const getCssValueFromFile = (fileStream: string) => {
+// * ----------------------------------------------------------------
+
+/**
+ * Search user current file below line
+ * import xx from 'xx/index.[xx].scss'
+ * and return [xx, 'xx/index.[xx].scss']
+ */
+export const getCssFilePathFromFile = (fileStream: string) => {
   const importLines = fileStream.split('import')
   const sLine = importLines.find(item => item.includes('.scss'))
     ?.split('\n')[0]

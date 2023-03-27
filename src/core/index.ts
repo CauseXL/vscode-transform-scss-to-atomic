@@ -1,11 +1,11 @@
 import { getAtomByCss } from '../utils'
-import { getCssValueFromFile } from './transform'
+import { CssProAndValue, transformToCssMapFromFile } from './transform'
 
 type OriginClassName = string
 type AtomClassName = string
 
-export const main = async (filePath: string) => {
-  const cssMap = await getCssValueFromFile(filePath) as Map<string, string[][]>
+export const getOCtoACRelation = async (filePath: string) => {
+  const cssMap = await transformToCssMapFromFile(filePath) as Map<OriginClassName, CssProAndValue[]>
   const resMap = new Map<OriginClassName, AtomClassName>()
 
   cssMap.forEach((value, key) => {
