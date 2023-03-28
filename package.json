@@ -1,6 +1,6 @@
 {
   "publisher": "cause_xl",
-  "name": "Transform module css to atomic",
+  "name": "TransformCssToAtomic",
   "displayName": "transform scss/less to atomic class",
   "version": "0.0.0",
   "private": true,
