@@ -1,23 +1,22 @@
 {
-  "publisher": "cause_xl",
-  "name": "TransformCssToAtomic",
-  "displayName": "transform scss/less to atomic class",
-  "version": "0.0.0",
-  "private": true,
+  "publisher": "causexl",
+  "name": "transform-css-to-atomic",
+  "displayName": "Transform css module to atomic",
+  "version": "0.0.8",
   "packageManager": "pnpm@7.8.0",
   "description": "",
-  "author": "cause_xl",
+  "author": "Cayden.Xiao",
   "license": "MIT",
-  "homepage": "https://github.com/e#readme",
+  "homepage": "https://github.com/CauseXL/vscode-transform-scss-to-atomic",
   "repository": {
     "type": "git",
-    "url": "https://github.com/"
+    "url": "https://github.com/CauseXL/vscode-transform-scss-to-atomic"
   },
   "categories": [
     "Other"
   ],
   "main": "./dist/index.js",
-  "icon": "res/icon.png",
+  "icon": "assets/icon.png",
   "files": [
     "dist"
   ],
@@ -27,16 +26,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.transform",
+        "command": "extension.transformModuleCss",
         "title": "Transform module css to atomic"
-      }
-    ],
-    "keybindings": [
-      {
-        "command": "extension.transform",
-        "when": "editorHasSelection",
-        "key": "ctrl+shift+J",
-        "mac": "cmd+shift+J"
       }
     ]
   },

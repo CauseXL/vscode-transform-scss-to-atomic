@@ -29,6 +29,7 @@ export type CssProAndValue = [CssProperty, CssValue]
  */
 export const transformToCssMapFromFile = async (cssFile: string) => {
   // Compile the SCSS to CSS
+  // TODO: sort ? longest -> shortest // XiaoLiang
   const res = new Map<string, CssProAndValue[]>()
 
   return new Promise((resolve) => {
