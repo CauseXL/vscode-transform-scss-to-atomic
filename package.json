@@ -1,12 +1,12 @@
 {
   "publisher": "cause_xl",
-  "name": "Transform css to atomic",
+  "name": "Transform module css to atomic",
   "displayName": "transform scss/less to atomic class",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@7.8.0",
   "description": "",
-  "author": "cause_xl <.com>",
+  "author": "cause_xl",
   "license": "MIT",
   "homepage": "https://github.com/e#readme",
   "repository": {
@@ -27,13 +27,13 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.getCurrentFile",
-        "title": "test scss"
+        "command": "extension.transform",
+        "title": "Transform module css to atomic"
       }
     ],
     "keybindings": [
       {
-        "command": "extension.getCurrentFile",
+        "command": "extension.transform",
         "when": "editorHasSelection",
         "key": "ctrl+shift+J",
         "mac": "cmd+shift+J"

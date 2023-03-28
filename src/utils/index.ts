@@ -74,6 +74,6 @@ export const getCssFilePathFromFile = (fileStream: string) => {
   const sLine = importLines.find(item => item.includes('.scss'))
     ?.split('\n')[0]
     ?.replace(/'/g, '').replace(/"/g, '').replace(/;/g, '')
-  const [v, p] = sLine?.includes('from') ? sLine.split('from').map(item => item.trim()) : ['', sLine]
+  const [v, p] = sLine?.includes('from') ? sLine.split('from').map(item => item.trim()) : ['', sLine?.trim()]
   return [v, p]
 }

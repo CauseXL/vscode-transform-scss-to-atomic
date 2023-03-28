@@ -5,16 +5,19 @@ import { getOCtoACRelation } from './core'
 import { replace } from './core/replace'
 import { getCssFilePathFromFile } from './utils'
 
+// * ---------------------------------------------------------------- const
+
+const INFO_PREFIX = 'Atom Transform'
+
 /**
- * 1. Get current file stream
+ * 1. Get current user active file stream
  * 2. Search scss/css files (multi?) and save the import var
  * 3. main function => return Map<className, atomClass>
  * 4. replace var.[className] with atomClass
  * 5. error handle
- * 6. shortcuts
  */
 export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand('extension.getCurrentFile', async () => {
+  const disposable = vscode.commands.registerCommand('extension.transform', async () => {
     const activeEditor = vscode.window.activeTextEditor
     if (activeEditor) {
       // /Users/xlcause/Desktop/lenovo/tezign-intelligence-frontend-api/webpack/base.js
@@ -25,12 +28,17 @@ export function activate(context: vscode.ExtensionContext) {
       const fileStream = fs.readFileSync(currentFilePath, 'utf-8')
       const [v = '', p] = getCssFilePathFromFile(fileStream)
 
-      // const cssPath = p && path.normalize(path.resolve(path.dirname(currentFilePath), p))
-      const cssPath = p && path.normalize(`${path.dirname(currentFilePath)}/index.module.scss`)
+      /** Do not support import './xx.scss' in this version */
+      if (!v) {
+        vscode.window.showErrorMessage(`${INFO_PREFIX}: Not supporting "import './xx.scss'"`)
+        return false;
+      }
 
-      vscode.window.showInformationMessage(`Current css file path: ${cssPath}`)
+      const cssPath = p && path.normalize(path.resolve(path.dirname(currentFilePath), p))
+      // vscode.window.showInformationMessage(`${INFO_PREFIX}: Current css file path: ${cssPath}`)
+      // return false;
       if (!cssPath) {
-        vscode.window.showInformationMessage('No css file detected')
+        vscode.window.showErrorMessage(`${INFO_PREFIX}: No css file detected`)
         return false
       }
       else {
@@ -38,12 +46,12 @@ export function activate(context: vscode.ExtensionContext) {
         const newTemplate = replace(fileStream, map, v)
         // write to current file
         replaceCurrentFileContent(newTemplate)
-        vscode.window.showInformationMessage(`tempalte: ${newTemplate}`)
+        // vscode.window.showInformationMessage(`tempalte: ${newTemplate}`)
         // vscode.window.showInformationMessage(`Map k: ${map.get('.share')}`)
       }
     }
     else {
-      vscode.window.showErrorMessage('No active editor found.')
+      vscode.window.showErrorMessage(`${INFO_PREFIX}: No active editor found.`)
     }
   })
 
