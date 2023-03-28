@@ -1,3 +1,33 @@
+.test {
+  flex: 1 1 0%;
+  background-position: left bottom;
+  background-position: bottom;
+  text-decoration-line: underline;
+  color: rgb(231 229 228);
+  color: #eee;
+  color: red;
+  letter-spacing: -0.025em;
+  font-weight: 200;
+  font-style: normal;
+  font-size: 14px;
+  padding: 0;
+  padding: 0 1px;
+  margin: 0 1px 2px;
+  padding: 0 1px 2px 3px;
+  padding-left: -99px;
+  justify-items: start;
+  justify-content: space-between;
+  flex: 1 1 0%;
+  flex-direction: column;
+  object-position: right bottom;
+  columns: 1;
+  display: flex;
+  display: flow-root;
+  break-before: all;
+  overflow-x: auto;
+  break-after: auto;
+}
+
 .pc_lenovo_box {
   margin: 0 auto;
   display: flex;
@@ -22,16 +52,6 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-}
-
-.test {
-  object-position: right bottom;
-  columns: 1;
-  display: flex;
-  display: flow-root;
-  break-before: all;
-  overflow-x: auto;
-  break-after: auto;
 }
 
 .readiness-action-header {

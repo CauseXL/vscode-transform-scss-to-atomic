@@ -26,10 +26,10 @@ describe('main function', () => {
     const data = replace(template, map, 'style')
     expect(data).toMatchInlineSnapshot(`
       "
-      <div className={' flex  '} style={{ ...style }}>
-      <div className={'flex   '} style={{ ...style }}>
-      <div className={'object-right-bottom columns-1 flex flow-root break-before-all overflow-x-auto break-after-auto'} style={{ ...style }}>
-      <div className={'object-right-bottom columns-1 flex flow-root break-before-all overflow-x-auto break-after-auto'} style={{ ...style }}>
+      <div className={'mx-auto my-0 flex flex-column h-full'} style={{ ...style }}>
+      <div className={'flex justify-between items-center mb-14'} style={{ ...style }}>
+      <div className={'flex-1 bg-left-bottom bg-bottom underline color-[rgb(231,229,228)] color-[#eee] color-[red] tracking-[-0.025em] font-weight-[200] not-italic text-[14px] p-0 px-1 py-0 mt-0 mb-2 mr-1 pt-0 pb-2 pr-1 pl-3 pl-[-99px] justify-items-start justify-between flex-1 flex-column object-right-bottom columns-1 flex flow-root break-before-all overflow-x-auto break-after-auto'} style={{ ...style }}>
+      <div className={'flex-1 bg-left-bottom bg-bottom underline color-[rgb(231,229,228)] color-[#eee] color-[red] tracking-[-0.025em] font-weight-[200] not-italic text-[14px] p-0 px-1 py-0 mt-0 mb-2 mr-1 pt-0 pb-2 pr-1 pl-3 pl-[-99px] justify-items-start justify-between flex-1 flex-column object-right-bottom columns-1 flex flow-root break-before-all overflow-x-auto break-after-auto'} style={{ ...style }}>
       </div>
       "
     `)
@@ -41,46 +41,46 @@ describe('Get 「origin -> atom」 map', () => {
     const res = await getOCtoACRelation(cssFile)
     expect(res).toMatchInlineSnapshot(`
       Map {
-        ".pc_lenovo_box" => " flex  ",
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-bar" => "",
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-content" => " ",
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane" => " flex ",
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-wrap,.pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-container" => "overflow-hidden flex  ",
-        ".test" => "object-right-bottom columns-1 flex flow-root break-before-all overflow-x-auto break-after-auto",
-        ".readiness-action-header" => "flex   ",
-        ".readiness-status-info" => "  ",
-        ".readiness-status-info .readiness-status-info__container" => "  ",
-        ".readiness-status-info .readiness-status-info__item" => "inline-flex     ",
-        ".readiness-status-popover__desc" => " ",
-        ".readiness-status-popover__desc .readiness-status-popover__light--green" => "",
-        ".readiness-status-popover__desc .readiness-status-popover__light--red" => "",
-        ".readiness-status-popover__desc .readiness-status-popover__light--yellow" => "",
-        ".readiness-status-circle" => "inline-block    ",
-        ".readiness-status-circle--large" => " ",
+        ".test" => "flex-1 bg-left-bottom bg-bottom underline color-[rgb(231,229,228)] color-[#eee] color-[red] tracking-[-0.025em] font-weight-[200] not-italic text-[14px] p-0 px-1 py-0 mt-0 mb-2 mr-1 pt-0 pb-2 pr-1 pl-3 pl-[-99px] justify-items-start justify-between flex-1 flex-column object-right-bottom columns-1 flex flow-root break-before-all overflow-x-auto break-after-auto",
+        ".pc_lenovo_box" => "mx-auto my-0 flex flex-column h-full",
+        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-bar" => "mb-8",
+        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-content" => "flex-[1] h-0",
+        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane" => "h-full flex flex-column",
+        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-wrap,.pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-container" => "overflow-hidden flex flex-column flex-[1]",
+        ".readiness-action-header" => "flex justify-between items-center mb-14",
+        ".readiness-status-info" => "flex-[1] ml-16 px-0 py-4",
+        ".readiness-status-info .readiness-status-info__container" => "pl-12  color-[#4e483d]",
+        ".readiness-status-info .readiness-status-info__item" => "inline-flex items-center mr-12 text-[12px] leading-[12] ",
+        ".readiness-status-popover__desc" => "w-220 text-[12px]",
+        ".readiness-status-popover__desc .readiness-status-popover__light--green" => "color-[#2ed1b9]",
+        ".readiness-status-popover__desc .readiness-status-popover__light--red" => "color-[#f9434d]",
+        ".readiness-status-popover__desc .readiness-status-popover__light--yellow" => "color-[#ffa730]",
+        ".readiness-status-circle" => "inline-block w-10 h-10 rounded-[50%] align-middle",
+        ".readiness-status-circle--large" => "w-18 h-18",
         ".readiness-status-circle--green" => "",
         ".readiness-status-circle--yellow" => "",
         ".readiness-status-circle--red" => "",
         ".readiness-status-circle--gray" => "",
         ".readiness-status-circle--empty" => " ",
-        ".readiness-status-action .readiness-status-action__item-dropdown" => "none ",
+        ".readiness-status-action .readiness-status-action__item-dropdown" => "none h-52",
         ".readiness-status-action:hover .readiness-status-action__item" => "none",
-        ".readiness-status-action:hover .readiness-status-action__item-dropdown" => "flex     absolute top-50% left-50% ",
-        ".readiness-status-action__item" => "   flex  ",
-        ".readiness-status-action__item--green" => " ",
+        ".readiness-status-action:hover .readiness-status-action__item-dropdown" => "flex justify-center items-center w-68 h-52 absolute top-50% left-50% ",
+        ".readiness-status-action__item" => "min-w-68 min-h-52 mx-auto my--10 flex justify-center items-center",
+        ".readiness-status-action__item--green" => "mx-0 my--16 ",
         ".readiness-status-action__item--green:hover" => "",
-        ".readiness-status-action__item-button" => "relative     ",
-        ".readiness-status-action__item-button:hover" => "   ",
-        ".readiness-status-action__item-button-container" => "",
+        ".readiness-status-action__item-button" => "relative w-68 h-30 color-[#e6ebf0] p-0 ",
+        ".readiness-status-action__item-button:hover" => "w-68 h-30 border-[#e6ebf0] color-[#e6ebf0]",
+        ".readiness-status-action__item-button-container" => "min-w-68",
         ".readiness-status-action__item-icon" => "absolute top-8 right-5",
-        ".readiness-table-footer" => "",
-        ".readiness-table-footer:hover" => "",
-        ".readiness-table" => "",
+        ".readiness-table-footer" => "mx-0 my--12",
+        ".readiness-table-footer:hover" => "color-[\\"black\\"]",
+        ".readiness-table" => "mb-20",
         ".readiness-table .readiness-table__edit-btn" => "",
-        ".readiness-table .readiness-table__edit-btn:hover" => "",
+        ".readiness-table .readiness-table__edit-btn:hover" => "color-[\\"black\\"]",
         ".readiness-table :global .tzui-table-wrapper" => "",
         ".readiness-table :global .tzui-table-footer" => "",
-        ".readiness-table :global .tzui-table-thead>tr>th" => "",
-        ".cell_text" => " overflow-hidden   -webkit-box ",
+        ".readiness-table :global .tzui-table-thead>tr>th" => "px-16 py-8",
+        ".cell_text" => " overflow-hidden  text-ellipsis -webkit-box ",
       }
     `)
   })
@@ -91,6 +91,116 @@ describe('Get css 「property - value」 map', () => {
     const cssMap = await transformToCssMapFromFile(cssFile)
     expect(cssMap).toMatchInlineSnapshot(`
       Map {
+        ".test" => [
+          [
+            "flex",
+            "1 1 0%",
+          ],
+          [
+            "background-position",
+            "left bottom",
+          ],
+          [
+            "background-position",
+            "bottom",
+          ],
+          [
+            "text-decoration-line",
+            "underline",
+          ],
+          [
+            "color",
+            "rgb(231,229,228)",
+          ],
+          [
+            "color",
+            "#eee",
+          ],
+          [
+            "color",
+            "red",
+          ],
+          [
+            "letter-spacing",
+            "-0.025em",
+          ],
+          [
+            "font-weight",
+            "200",
+          ],
+          [
+            "font-style",
+            "normal",
+          ],
+          [
+            "font-size",
+            "14px",
+          ],
+          [
+            "padding",
+            "0",
+          ],
+          [
+            "padding",
+            "0 1px",
+          ],
+          [
+            "margin",
+            "0 1px 2px",
+          ],
+          [
+            "padding",
+            "0 1px 2px 3px",
+          ],
+          [
+            "padding-left",
+            "-99px",
+          ],
+          [
+            "justify-items",
+            "start",
+          ],
+          [
+            "justify-content",
+            "space-between",
+          ],
+          [
+            "flex",
+            "1 1 0%",
+          ],
+          [
+            "flex-direction",
+            "column",
+          ],
+          [
+            "object-position",
+            "right bottom",
+          ],
+          [
+            "columns",
+            "1",
+          ],
+          [
+            "display",
+            "flex",
+          ],
+          [
+            "display",
+            "flow-root",
+          ],
+          [
+            "break-before",
+            "all",
+          ],
+          [
+            "overflow-x",
+            "auto",
+          ],
+          [
+            "break-after",
+            "auto",
+          ],
+        ],
         ".pc_lenovo_box" => [
           [
             "margin",
@@ -155,36 +265,6 @@ describe('Get css 「property - value」 map', () => {
           [
             "flex",
             "1",
-          ],
-        ],
-        ".test" => [
-          [
-            "object-position",
-            "right bottom",
-          ],
-          [
-            "columns",
-            "1",
-          ],
-          [
-            "display",
-            "flex",
-          ],
-          [
-            "display",
-            "flow-root",
-          ],
-          [
-            "break-before",
-            "all",
-          ],
-          [
-            "overflow-x",
-            "auto",
-          ],
-          [
-            "break-after",
-            "auto",
           ],
         ],
         ".readiness-action-header" => [
@@ -595,7 +675,37 @@ describe('Get css 「property - value」 map', () => {
 describe('exported css', () => {
   it('should work', () => {
     expect(cssStrFromFile).toMatchInlineSnapshot(`
-      ".pc_lenovo_box {
+      ".test {
+        flex: 1 1 0%;
+        background-position: left bottom;
+        background-position: bottom;
+        text-decoration-line: underline;
+        color: rgb(231 229 228);
+        color: #eee;
+        color: red;
+        letter-spacing: -0.025em;
+        font-weight: 200;
+        font-style: normal;
+        font-size: 14px;
+        padding: 0;
+        padding: 0 1px;
+        margin: 0 1px 2px;
+        padding: 0 1px 2px 3px;
+        padding-left: -99px;
+        justify-items: start;
+        justify-content: space-between;
+        flex: 1 1 0%;
+        flex-direction: column;
+        object-position: right bottom;
+        columns: 1;
+        display: flex;
+        display: flow-root;
+        break-before: all;
+        overflow-x: auto;
+        break-after: auto;
+      }
+
+      .pc_lenovo_box {
         margin: 0 auto;
         display: flex;
         flex-direction: column;
@@ -619,16 +729,6 @@ describe('exported css', () => {
         display: flex;
         flex-direction: column;
         flex: 1;
-      }
-
-      .test {
-        object-position: right bottom;
-        columns: 1;
-        display: flex;
-        display: flow-root;
-        break-before: all;
-        overflow-x: auto;
-        break-after: auto;
       }
 
       .readiness-action-header {
