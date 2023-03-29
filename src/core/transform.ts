@@ -38,16 +38,14 @@ const formatCssToArray = (cssStr: string): CssProAndValue[] => {
  */
 export const transformToCssMapFromFile = async (cssFile: string) => {
   // Compile the SCSS to CSS
-  // TODO: sort ? longest -> shortest // XiaoLiang
   const res = new Map<string, CssProAndValue[]>()
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     sass.render({
       file: cssFile,
     }, (err, result) => {
       if (err) {
-        console.error(err)
-        resolve(res)
+        reject(err)
       }
       else {
         const cssStr = result?.css && Buffer.from(result.css).toString()

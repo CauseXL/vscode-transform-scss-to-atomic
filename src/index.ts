@@ -42,13 +42,18 @@ export function activate(context: vscode.ExtensionContext) {
         return false
       }
       else {
-        const map = await getOCtoACRelation(cssPath)
-        /** check replace.test.ts describe: Why sort map by keys length  */
-        const sortedMap = sortMapByKeyLength(map) as ATOM_MAP
-        const newTemplate = replace(fileStream, sortedMap, v)
+        try {
 
-        replaceCurrentFileContent(newTemplate)
-        // vscode.window.showInformationMessage(`tempalte: ${newTemplate}`)
+          const map = await getOCtoACRelation(cssPath)
+          /** check replace.test.ts describe: Why sort map by keys length  */
+          const sortedMap = sortMapByKeyLength(map) as ATOM_MAP
+          const newTemplate = replace(fileStream, sortedMap, v)
+          
+          replaceCurrentFileContent(newTemplate)
+        } catch (e) {
+          if (String(e).includes('Undefined variable'))
+            vscode.window.showErrorMessage(`${INFO_PREFIX}: scss variable not supported for this version`)
+        }
       }
     }
     else {
