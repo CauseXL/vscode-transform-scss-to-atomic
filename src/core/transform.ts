@@ -1,4 +1,4 @@
-import * as cssTree from 'css-tree'
+import * as csstree from 'css-tree'
 import sass from 'sass'
 
 // * ---------------------------------------------------------------- inter
@@ -51,12 +51,12 @@ export const transformToCssMapFromFile = async (cssFile: string) => {
       }
       else {
         const cssStr = result?.css && Buffer.from(result.css).toString()
-        const ast = cssTree.parse(cssStr || '')
+        const ast = csstree.parse(cssStr || '')
         // TODO: scss/less variable // XiaoLiang
-        cssTree.walk(ast, (node: any) => {
+        csstree.walk(ast, (node: any) => {
           if (node.type === 'Rule') {
-            const selector = cssTree.generate(node.prelude)
-            const childrenNode = cssTree.generate(node.block)
+            const selector = csstree.generate(node.prelude)
+            const childrenNode = csstree.generate(node.block)
             if (res.has(selector))
               res.set(selector, formatCssToArray(res.get(selector) + childrenNode))
             else

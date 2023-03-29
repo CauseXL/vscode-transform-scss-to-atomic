@@ -1,9 +1,9 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
-import { getOCtoACRelation } from './core'
+import { ATOM_MAP, getOCtoACRelation } from './core'
 import { replace } from './core/replace'
-import { getCssFilePathFromFile } from './utils'
+import { getCssFilePathFromFile, sortMapByKeyLength } from './utils'
 
 // * ---------------------------------------------------------------- const
 
@@ -43,11 +43,12 @@ export function activate(context: vscode.ExtensionContext) {
       }
       else {
         const map = await getOCtoACRelation(cssPath)
-        const newTemplate = replace(fileStream, map, v)
-        // write to current file
+        /** check replace.test.ts describe: Why sort map by keys length  */
+        const sortedMap = sortMapByKeyLength(map) as ATOM_MAP
+        const newTemplate = replace(fileStream, sortedMap, v)
+
         replaceCurrentFileContent(newTemplate)
         // vscode.window.showInformationMessage(`tempalte: ${newTemplate}`)
-        // vscode.window.showInformationMessage(`Map k: ${map.get('.share')}`)
       }
     }
     else {

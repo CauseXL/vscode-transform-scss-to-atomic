@@ -5,9 +5,11 @@ import { transformToCssMapFromFile } from './transform'
 type OriginClassName = string
 type AtomClassName = string
 
+export type ATOM_MAP = Map<OriginClassName, AtomClassName>
+
 export const getOCtoACRelation = async (filePath: string) => {
   const cssMap = await transformToCssMapFromFile(filePath) as Map<OriginClassName, CssProAndValue[]>
-  const resMap = new Map<OriginClassName, AtomClassName>()
+  const resMap: ATOM_MAP = new Map()
 
   cssMap.forEach((value, key) => {
     const atomClass = getAtomByCss(value)
@@ -19,3 +21,5 @@ export const getOCtoACRelation = async (filePath: string) => {
 
   return resMap
 }
+
+

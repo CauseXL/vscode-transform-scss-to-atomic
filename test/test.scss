@@ -33,25 +33,32 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-.pc_lenovo_box .pc_lenovo_content_box .ant-tabs-bar {
-  margin-bottom: 8px;
-}
-.pc_lenovo_box .pc_lenovo_content_box .ant-tabs-content {
-  flex: 1;
-  height: 0;
-}
-.pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-wrap,
-.pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-container {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+
+  .pc_lenovo_box_content {
+    // 缩短顶部间距
+    .ant-tabs-bar {
+      margin-bottom: 8px;
+    }
+
+    .ant-tabs-content {
+      flex: 1;
+      height: 0;
+    }
+
+    .ant-tabs-tabpane {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .spin-wrap,
+      .spin-container {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+    }
+  }
 }
 
 .readiness-action-header {

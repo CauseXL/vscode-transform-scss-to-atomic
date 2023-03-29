@@ -43,10 +43,10 @@ describe('Get 「origin -> atom」 map', () => {
       Map {
         ".test" => "flex-1 bg-left-bottom bg-bottom underline color-[rgb(231,229,228)] color-[#eee] color-[red] tracking-[-0.025em] font-weight-[200] not-italic text-[14px] p-0 px-1 py-0 mt-0 mb-2 mr-1 pt-0 pb-2 pr-1 pl-3 pl-[-99px] justify-items-start justify-between flex-1 flex-column object-right-bottom columns-1 flex flow-root break-before-all overflow-x-auto break-after-auto",
         ".pc_lenovo_box" => "mx-auto my-0 flex flex-column h-full",
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-bar" => "mb-8",
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-content" => "flex-[1] h-0",
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane" => "h-full flex flex-column",
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-wrap,.pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-container" => "overflow-hidden flex flex-column flex-[1]",
+        ".pc_lenovo_box .pc_lenovo_box_content .ant-tabs-bar" => "mb-8",
+        ".pc_lenovo_box .pc_lenovo_box_content .ant-tabs-content" => "flex-[1] h-0",
+        ".pc_lenovo_box .pc_lenovo_box_content .ant-tabs-tabpane" => "h-full flex flex-column",
+        ".pc_lenovo_box .pc_lenovo_box_content .ant-tabs-tabpane .spin-wrap,.pc_lenovo_box .pc_lenovo_box_content .ant-tabs-tabpane .spin-container" => "overflow-hidden flex flex-column flex-[1]",
         ".readiness-action-header" => "flex justify-between items-center mb-14",
         ".readiness-status-info" => "flex-[1] ml-16 px-0 py-4",
         ".readiness-status-info .readiness-status-info__container" => "pl-12  color-[#4e483d]",
@@ -219,13 +219,13 @@ describe('Get css 「property - value」 map', () => {
             "100%",
           ],
         ],
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-bar" => [
+        ".pc_lenovo_box .pc_lenovo_box_content .ant-tabs-bar" => [
           [
             "margin-bottom",
             "8px",
           ],
         ],
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-content" => [
+        ".pc_lenovo_box .pc_lenovo_box_content .ant-tabs-content" => [
           [
             "flex",
             "1",
@@ -235,7 +235,7 @@ describe('Get css 「property - value」 map', () => {
             "0",
           ],
         ],
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane" => [
+        ".pc_lenovo_box .pc_lenovo_box_content .ant-tabs-tabpane" => [
           [
             "height",
             "100%",
@@ -249,7 +249,7 @@ describe('Get css 「property - value」 map', () => {
             "column",
           ],
         ],
-        ".pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-wrap,.pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-container" => [
+        ".pc_lenovo_box .pc_lenovo_box_content .ant-tabs-tabpane .spin-wrap,.pc_lenovo_box .pc_lenovo_box_content .ant-tabs-tabpane .spin-container" => [
           [
             "overflow",
             "hidden",
@@ -710,25 +710,32 @@ describe('exported css', () => {
         display: flex;
         flex-direction: column;
         height: 100%;
-      }
-      .pc_lenovo_box .pc_lenovo_content_box .ant-tabs-bar {
-        margin-bottom: 8px;
-      }
-      .pc_lenovo_box .pc_lenovo_content_box .ant-tabs-content {
-        flex: 1;
-        height: 0;
-      }
-      .pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-      }
-      .pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-wrap,
-      .pc_lenovo_box .pc_lenovo_content_box .ant-tabs-tabpane .spin-container {
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
+
+        .pc_lenovo_box_content {
+          // 缩短顶部间距
+          .ant-tabs-bar {
+            margin-bottom: 8px;
+          }
+
+          .ant-tabs-content {
+            flex: 1;
+            height: 0;
+          }
+
+          .ant-tabs-tabpane {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .spin-wrap,
+            .spin-container {
+              overflow: hidden;
+              display: flex;
+              flex-direction: column;
+              flex: 1;
+            }
+          }
+        }
       }
 
       .readiness-action-header {
