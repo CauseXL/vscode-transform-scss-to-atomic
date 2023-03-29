@@ -1,5 +1,6 @@
 import { getAtomByCss } from '../utils'
-import { CssProAndValue, transformToCssMapFromFile } from './transform'
+import type { CssProAndValue } from './transform'
+import { transformToCssMapFromFile } from './transform'
 
 type OriginClassName = string
 type AtomClassName = string

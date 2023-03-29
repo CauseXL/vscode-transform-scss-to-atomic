@@ -17,7 +17,7 @@ const INFO_PREFIX = 'Atom Transform'
  * 5. error handle
  */
 export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand('extension.transformModuleCss', async () => {
+  const disposable = vscode.commands.registerCommand('extension.transform', async () => {
     const activeEditor = vscode.window.activeTextEditor
     if (activeEditor) {
       // /Users/xlcause/Desktop/lenovo/tezign-intelligence-frontend-api/webpack/base.js
@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
       /** Do not support import './xx.scss' in this version */
       if (!v) {
         vscode.window.showErrorMessage(`${INFO_PREFIX}: Not supporting "import './xx.scss'"`)
-        return false;
+        return false
       }
 
       const cssPath = p && path.normalize(path.resolve(path.dirname(currentFilePath), p))
@@ -73,7 +73,7 @@ function replaceCurrentFileContent(newContent: string) {
   workspaceEdit.replace(document.uri, new vscode.Range(0, 0, document.lineCount, 0), newContent)
   vscode.workspace.applyEdit(workspaceEdit)
     .then(() => {
-      vscode.window.showInformationMessage('File replaced successfully!')
+      vscode.window.showInformationMessage(`${INFO_PREFIX}: File replaced successfully!`)
     }, (err) => {
       vscode.window.showErrorMessage(`Error replacing file: ${err.message}`)
     })

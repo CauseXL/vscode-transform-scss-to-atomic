@@ -1,7 +1,5 @@
 import { formatMinusUnit, formatSpacingCss, getAtomByTypeAndValue, getFullAndRemovePx, removePxUnit } from '../utils'
 
-// TODO: 负数 -1 ｜ -1px -> -[-1px]
-
 // * --------------------------------------------------------------------------------
 
 const CSS_ATOM_TRANS_MAP = {

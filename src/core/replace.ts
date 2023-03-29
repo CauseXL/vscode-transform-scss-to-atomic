@@ -5,11 +5,12 @@
 export const replace = (currentFileStream: string, cssMap: Map<string, string>, replaceVar: string) => {
   let template = currentFileStream
   cssMap.forEach((v, k) => {
-    const lastK = k.split(' ').slice(-1)[0] //.className
+    const lastK = k.split(' ').slice(-1)[0] // .className
     if (!replaceVar) {
       const className = `${lastK.slice(1)}`
       template = template.replace(className, `'${v}'`)
-    } else {
+    }
+    else {
       /**
        * 1. style.className
        * 2. style[className]

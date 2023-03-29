@@ -7,6 +7,15 @@ type CssProperty = string
 type CssValue = string
 export type CssProAndValue = [CssProperty, CssValue]
 
+// * ---------------------------------------------------------------- util
+
+const formatCssToArray = (cssStr: string): CssProAndValue[] => {
+  const BRACE_REX = /[{}]/g
+  const css = cssStr.replace(BRACE_REX, '')
+  const lines = css.split(';')
+  return lines.map((line: string) => line.split(':')) as CssProAndValue[]
+}
+
 // * ---------------------------------------------------------------- func
 
 /**
@@ -15,7 +24,7 @@ export type CssProAndValue = [CssProperty, CssValue]
     margin: 0 auto;
     display: flex;
   }
- * 
+ *
  * @return ".pc_lenovo_box" => [
     [
       "margin",
@@ -58,13 +67,4 @@ export const transformToCssMapFromFile = async (cssFile: string) => {
       }
     })
   })
-}
-
-// * ---------------------------------------------------------------- util
-
-const formatCssToArray = (cssStr: string): CssProAndValue[] => {
-  const BRACE_REX = /[{}]/g
-  const css = cssStr.replace(BRACE_REX, '')
-  const lines = css.split(';')
-  return lines.map((line: string) => line.split(':')) as CssProAndValue[]
 }
