@@ -39,6 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
             vscode.window.showErrorMessage(`${INFO_PREFIX}: Not supporting "import './xx.scss'"`)
             return false
           }
+          vscode.window.showInformationMessage(`${INFO_PREFIX}: Transforming...`)
           const backupPath = replaceCssVariable(cssPath)
           const map = await getOCtoACRelation(backupPath)
           /** check replace.test.ts describe: Why sort map by keys length  */
