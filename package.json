@@ -2,7 +2,7 @@
   "publisher": "causexl",
   "name": "transform-to-atomic-css",
   "displayName": "Transform css module to atomic",
-  "version": "0.0.8",
+  "version": "0.0.11",
   "packageManager": "pnpm@7.8.0",
   "description": "",
   "author": "Cayden.Xiao",

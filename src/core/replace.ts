@@ -1,3 +1,5 @@
+import * as fs from 'fs'
+
 /**
  * replace current file's class from style to atomic
  * ${style.test} -> ${cssMap.get('.test')} -> 'flex top-0'
@@ -26,4 +28,18 @@ export const replace = (currentFileStream: string, cssMap: Map<string, string>, 
     }
   })
   return template
+}
+
+export const replaceCssVariable = (cssPath: string, type = 'sass') => {
+  const fileStream = fs.readFileSync(cssPath, 'utf-8')
+
+  /** @include --> // @include */
+  let newStream = fileStream.replace(/\@include/g, '// @include')
+  newStream = newStream.replace(/[$@]/g, '')
+
+  const path = cssPath;
+  const lastIndex = path.lastIndexOf('.')
+  const backUpPath = `${path.slice(0, lastIndex)}-backup${path.slice(lastIndex)}`
+  fs.writeFileSync(backUpPath, newStream);
+  return backUpPath
 }

@@ -2,12 +2,12 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
 import { ATOM_MAP, getOCtoACRelation } from './core'
-import { replace } from './core/replace'
+import { replace, replaceCssVariable } from './core/replace'
 import { getCssFilePathFromFile, sortMapByKeyLength } from './utils'
 
 // * ---------------------------------------------------------------- const
 
-const INFO_PREFIX = 'Atom Transform'
+export const INFO_PREFIX = 'Atom Transform'
 
 /**
  * 1. Get current user active file stream
@@ -20,38 +20,35 @@ export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand('extension.transform', async () => {
     const activeEditor = vscode.window.activeTextEditor
     if (activeEditor) {
-      // /Users/xlcause/Desktop/lenovo/tezign-intelligence-frontend-api/webpack/base.js
       /** 1. Get current file stream */
       const currentFilePath = activeEditor.document.uri.fsPath
 
       /** 2. Search scss/css files (multi?) and save the import var */
       const fileStream = fs.readFileSync(currentFilePath, 'utf-8')
       const [v = '', p] = getCssFilePathFromFile(fileStream)
-
-      /** Do not support import './xx.scss' in this version */
-      if (!v) {
-        vscode.window.showErrorMessage(`${INFO_PREFIX}: Not supporting "import './xx.scss'"`)
-        return false
-      }
-
       const cssPath = p && path.normalize(path.resolve(path.dirname(currentFilePath), p))
-      // vscode.window.showInformationMessage(`${INFO_PREFIX}: Current css file path: ${cssPath}`)
-      // return false;
+
       if (!cssPath) {
         vscode.window.showErrorMessage(`${INFO_PREFIX}: No css file detected`)
         return false
       }
       else {
         try {
-
-          const map = await getOCtoACRelation(cssPath)
+          /** Do not support import './xx.scss' in this version */
+          if (!v) {
+            vscode.window.showErrorMessage(`${INFO_PREFIX}: Not supporting "import './xx.scss'"`)
+            return false
+          }
+          const backupPath = replaceCssVariable(cssPath)
+          const map = await getOCtoACRelation(backupPath)
           /** check replace.test.ts describe: Why sort map by keys length  */
           const sortedMap = sortMapByKeyLength(map) as ATOM_MAP
           const newTemplate = replace(fileStream, sortedMap, v)
-          
+
           replaceCurrentFileContent(newTemplate)
-        } catch (e) {
-          if (String(e).includes('Undefined variable'))
+          fs.unlinkSync(backupPath);
+        } catch (e: any) {
+          if (e?.formatted.includes('Undefined variable'))
             vscode.window.showErrorMessage(`${INFO_PREFIX}: scss variable not supported for this version`)
         }
       }

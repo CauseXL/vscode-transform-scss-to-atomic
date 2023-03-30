@@ -1,5 +1,8 @@
+import * as fs from 'fs'
+import * as vscode from 'vscode'
 import * as csstree from 'css-tree'
 import sass from 'sass'
+import { INFO_PREFIX } from '..'
 
 // * ---------------------------------------------------------------- inter
 
@@ -36,16 +39,19 @@ const formatCssToArray = (cssStr: string): CssProAndValue[] => {
     ]
   ]
  */
-export const transformToCssMapFromFile = async (cssFile: string) => {
+export const transformToCssMapFromFile = async (cssFilePath: string) => {
   // Compile the SCSS to CSS
   const res = new Map<string, CssProAndValue[]>()
 
   return new Promise((resolve, reject) => {
     sass.render({
-      file: cssFile,
+      file: cssFilePath,
     }, (err, result) => {
       if (err) {
         reject(err)
+        // ! remove this line when run test
+        vscode.window.showErrorMessage(`${INFO_PREFIX}: ${err}`)
+        fs.unlinkSync(cssFilePath);
       }
       else {
         const cssStr = result?.css && Buffer.from(result.css).toString()

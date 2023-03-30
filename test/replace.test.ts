@@ -1,6 +1,7 @@
+import { join } from 'path'
 import { describe, expect, it } from 'vitest'
 import { ATOM_MAP } from '../src/core'
-import { replace } from '../src/core/replace'
+import { replace, replaceCssVariable } from '../src/core/replace'
 import { sortMapByKeyLength } from '../src/utils'
 
 // * ----------------------------------------------------------------
@@ -59,6 +60,15 @@ describe('Why sort map by keys length', () => {
       <div className=\\" pc_lenovo_box \\">
       "
     `)
+  })
+})
+
+
+describe('Replace Sass variable', () => {
+  it('should', () => {
+    const cssFile = join(__dirname, './test-variable.scss')    
+
+    expect(replaceCssVariable(cssFile)).toMatchInlineSnapshot('"/Users/xlcause/Desktop/learn/vscode-scss-to-unocss/test/test-variable-backup.scss"')
   })
 })
 
