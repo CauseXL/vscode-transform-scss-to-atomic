@@ -22,6 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
     if (activeEditor) {
       /** 1. Get current file stream */
       const currentFilePath = activeEditor.document.uri.fsPath
+      vscode.window.showInformationMessage(`${INFO_PREFIX}: Transforming...`)
 
       /** 2. Search scss/css files (multi?) and save the import var */
       const fileStream = fs.readFileSync(currentFilePath, 'utf-8')
@@ -39,7 +40,6 @@ export function activate(context: vscode.ExtensionContext) {
             vscode.window.showErrorMessage(`${INFO_PREFIX}: Not supporting "import './xx.scss'"`)
             return false
           }
-          vscode.window.showInformationMessage(`${INFO_PREFIX}: Transforming...`)
           const backupPath = replaceCssVariable(cssPath)
           const map = await getOCtoACRelation(backupPath)
           /** check replace.test.ts describe: Why sort map by keys length  */
